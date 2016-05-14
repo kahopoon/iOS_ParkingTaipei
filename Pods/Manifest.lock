@@ -1,0 +1,18 @@
+PODS:
+  - Alamofire (3.3.1)
+  - PKHUD (3.1.0)
+  - SwiftCSV (0.3.2)
+
+DEPENDENCIES:
+  - Alamofire
+  - PKHUD
+  - SwiftCSV
+
+SPEC CHECKSUMS:
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  PKHUD: 4167eccdb1b3a892fd80ce2b51cb6ba412a889ab
+  SwiftCSV: 8b64b738fc54567d229acb17ce6d584e0dd27560
+
+PODFILE CHECKSUM: b694aa5b0c965ac8493446e602730e405415d79a
+
+COCOAPODS: 1.0.0.beta.8

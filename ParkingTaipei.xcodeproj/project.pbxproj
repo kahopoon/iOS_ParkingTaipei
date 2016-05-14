@@ -12,6 +12,8 @@
 		11006A341CE75CE200A33424 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11006A321CE75CE200A33424 /* Main.storyboard */; };
 		11006A361CE75CE200A33424 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11006A351CE75CE200A33424 /* Assets.xcassets */; };
 		11006A391CE75CE200A33424 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11006A371CE75CE200A33424 /* LaunchScreen.storyboard */; };
+		11006A411CE75D2500A33424 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11006A401CE75D2500A33424 /* MapKit.framework */; };
+		4BDB3B98F601398DC637D5FB /* Pods_ParkingTaipei.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE33B3D456CFB6EF2845F96F /* Pods_ParkingTaipei.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,10 @@
 		11006A351CE75CE200A33424 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11006A381CE75CE200A33424 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11006A3A1CE75CE200A33424 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11006A401CE75D2500A33424 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		4D924453DA2D1E490F051104 /* Pods-ParkingTaipei.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParkingTaipei.release.xcconfig"; path = "Pods/Target Support Files/Pods-ParkingTaipei/Pods-ParkingTaipei.release.xcconfig"; sourceTree = "<group>"; };
+		CC61BBEE99CACE35C2D5F617 /* Pods-ParkingTaipei.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParkingTaipei.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ParkingTaipei/Pods-ParkingTaipei.debug.xcconfig"; sourceTree = "<group>"; };
+		CE33B3D456CFB6EF2845F96F /* Pods_ParkingTaipei.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParkingTaipei.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +35,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11006A411CE75D2500A33424 /* MapKit.framework in Frameworks */,
+				4BDB3B98F601398DC637D5FB /* Pods_ParkingTaipei.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,8 +46,11 @@
 		11006A221CE75CE200A33424 = {
 			isa = PBXGroup;
 			children = (
+				11006A401CE75D2500A33424 /* MapKit.framework */,
 				11006A2D1CE75CE200A33424 /* ParkingTaipei */,
 				11006A2C1CE75CE200A33424 /* Products */,
+				A0CB6EFBCB2B83E52ACC9777 /* Pods */,
+				CEA68B1760E360EF583A7C10 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +75,23 @@
 			path = ParkingTaipei;
 			sourceTree = "<group>";
 		};
+		A0CB6EFBCB2B83E52ACC9777 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CC61BBEE99CACE35C2D5F617 /* Pods-ParkingTaipei.debug.xcconfig */,
+				4D924453DA2D1E490F051104 /* Pods-ParkingTaipei.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CEA68B1760E360EF583A7C10 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE33B3D456CFB6EF2845F96F /* Pods_ParkingTaipei.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +99,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11006A3D1CE75CE200A33424 /* Build configuration list for PBXNativeTarget "ParkingTaipei" */;
 			buildPhases = (
+				B542B6B4419F8F93E19CFFDC /* 📦 Check Pods Manifest.lock */,
 				11006A271CE75CE200A33424 /* Sources */,
 				11006A281CE75CE200A33424 /* Frameworks */,
 				11006A291CE75CE200A33424 /* Resources */,
+				9A1D66F770F998E0628F2E5D /* 📦 Embed Pods Frameworks */,
+				5B12AB96B3307033FE6419F4 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -129,6 +160,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5B12AB96B3307033FE6419F4 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ParkingTaipei/Pods-ParkingTaipei-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A1D66F770F998E0628F2E5D /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ParkingTaipei/Pods-ParkingTaipei-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B542B6B4419F8F93E19CFFDC /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		11006A271CE75CE200A33424 /* Sources */ = {
@@ -249,6 +328,7 @@
 		};
 		11006A3E1CE75CE200A33424 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC61BBEE99CACE35C2D5F617 /* Pods-ParkingTaipei.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ParkingTaipei/Info.plist;
@@ -260,6 +340,7 @@
 		};
 		11006A3F1CE75CE200A33424 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D924453DA2D1E490F051104 /* Pods-ParkingTaipei.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ParkingTaipei/Info.plist;
@@ -288,6 +369,7 @@
 				11006A3F1CE75CE200A33424 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
