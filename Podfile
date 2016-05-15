@@ -6,6 +6,7 @@ use_frameworks!
 target 'ParkingTaipei' do
 	pod 'Alamofire'
 	pod 'SwiftCSV'
+	pod 'SwiftyJSON'
 	pod 'PKHUD'
 end
 

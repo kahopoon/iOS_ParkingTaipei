@@ -3,12 +3,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Address Input View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ParkingTaipei" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddressInput_ViewController" id="BYZ-38-t0r" customClass="AddressInput_ViewController" customModule="ParkingTaipei" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +18,141 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身障好停車" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ujj-S2-B3A">
+                                <rect key="frame" x="210" y="84" width="180" height="43"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入地址或於下方地圖選取" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I9r-gM-iE5">
+                                <rect key="frame" x="199" y="151" width="203" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5hO-Hm-TRJ">
+                                <rect key="frame" x="199" y="205" width="203" height="203"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="5hO-Hm-TRJ" secondAttribute="height" multiplier="1:1" id="rfQ-GO-CGf"/>
+                                </constraints>
+                            </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZVi-GT-0A3" userLabel="centerMark">
+                                <rect key="frame" x="300" y="306" width="1" height="1"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="mH9-Y7-Y1C"/>
+                                    <constraint firstAttribute="width" constant="1" id="rRa-o1-y7z"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mapMarker" translatesAutoresizingMaskIntoConstraints="NO" id="j9I-wN-Sv7">
+                                <rect key="frame" x="281" y="267" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="j9I-wN-Sv7" secondAttribute="height" multiplier="1:1" id="BFT-Ce-MtD"/>
+                                    <constraint firstAttribute="width" constant="40" id="Brj-Tj-QcT"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VfE-aG-hB4">
+                                <rect key="frame" x="199" y="432" width="203" height="50"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="TtE-bb-Vcg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <inset key="contentEdgeInsets" minX="24" minY="0.0" maxX="24" maxY="0.0"/>
+                                <state key="normal" title="尋找">
+                                    <color key="titleColor" red="0.0" green="0.6261784457375702" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="gFF-i5-E9L" kind="show" identifier="showParkingList" id="Ss8-nr-cE9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.6848072114" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ZVi-GT-0A3" firstAttribute="centerX" secondItem="5hO-Hm-TRJ" secondAttribute="centerX" id="19k-jA-Abb"/>
+                            <constraint firstItem="j9I-wN-Sv7" firstAttribute="bottom" secondItem="ZVi-GT-0A3" secondAttribute="bottom" id="8Co-pk-PNk"/>
+                            <constraint firstItem="VfE-aG-hB4" firstAttribute="width" secondItem="5hO-Hm-TRJ" secondAttribute="width" id="BrH-iL-EUb"/>
+                            <constraint firstItem="5hO-Hm-TRJ" firstAttribute="width" secondItem="I9r-gM-iE5" secondAttribute="width" id="JfE-k2-bkO"/>
+                            <constraint firstItem="5hO-Hm-TRJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JyN-lh-fZD"/>
+                            <constraint firstItem="Ujj-S2-B3A" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NJf-VC-2NS"/>
+                            <constraint firstItem="VfE-aG-hB4" firstAttribute="top" secondItem="5hO-Hm-TRJ" secondAttribute="bottom" constant="24" id="UrM-I3-2k0"/>
+                            <constraint firstItem="VfE-aG-hB4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XeO-G6-rLF"/>
+                            <constraint firstItem="I9r-gM-iE5" firstAttribute="top" secondItem="Ujj-S2-B3A" secondAttribute="bottom" constant="24" id="ail-Cj-KgE"/>
+                            <constraint firstItem="I9r-gM-iE5" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="eT4-4W-gVd"/>
+                            <constraint firstItem="I9r-gM-iE5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pGc-Hf-LA4"/>
+                            <constraint firstItem="j9I-wN-Sv7" firstAttribute="centerX" secondItem="5hO-Hm-TRJ" secondAttribute="centerX" id="pdd-mW-Qpx"/>
+                            <constraint firstItem="ZVi-GT-0A3" firstAttribute="centerY" secondItem="5hO-Hm-TRJ" secondAttribute="centerY" id="rsL-xx-qSH"/>
+                            <constraint firstItem="5hO-Hm-TRJ" firstAttribute="top" secondItem="I9r-gM-iE5" secondAttribute="bottom" constant="24" id="uV5-oQ-rNL"/>
+                            <constraint firstItem="Ujj-S2-B3A" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.35" id="zcb-De-Cjn"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="addressInput" destination="I9r-gM-iE5" id="lQ5-Pc-AgJ"/>
+                        <outlet property="addressSelectionMapView" destination="5hO-Hm-TRJ" id="gjj-3W-jTu"/>
+                        <outlet property="searchButton" destination="VfE-aG-hB4" id="ick-rl-aSe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--Parking List Table View Controller-->
+        <scene sceneID="rPP-ZX-jGC">
+            <objects>
+                <tableViewController storyboardIdentifier="ParkingList_TableViewController" automaticallyAdjustsScrollViewInsets="NO" id="gFF-i5-E9L" customClass="ParkingList_TableViewController" customModule="ParkingTaipei" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="uQD-OP-xmw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.6848072114" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="RIc-rh-M3d" userLabel="header">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="68"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4uN-gq-Yu5">
+                                    <rect key="frame" x="60" y="32" width="480" height="29"/>
+                                    <segments>
+                                        <segment title="機車"/>
+                                        <segment title="汽車"/>
+                                    </segments>
+                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </segmentedControl>
+                            </subviews>
+                            <color key="backgroundColor" red="0.0" green="0.6848072114" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="4uN-gq-Yu5" firstAttribute="centerY" secondItem="RIc-rh-M3d" secondAttribute="centerY" id="0WE-Pz-KhP"/>
+                                <constraint firstItem="4uN-gq-Yu5" firstAttribute="width" secondItem="RIc-rh-M3d" secondAttribute="width" multiplier="0.8" id="7Ro-Zb-rsU"/>
+                                <constraint firstAttribute="bottom" secondItem="4uN-gq-Yu5" secondAttribute="bottom" constant="8" id="bni-SU-Usv"/>
+                                <constraint firstItem="4uN-gq-Yu5" firstAttribute="centerX" secondItem="RIc-rh-M3d" secondAttribute="centerX" id="ohe-Zy-VRH"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="0WE-Pz-KhP"/>
+                                </mask>
+                            </variation>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ParkingList_TableViewCell" id="nIx-hW-HAY" customClass="ParkingList_TableViewCell" customModule="ParkingTaipei" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="96" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nIx-hW-HAY" id="tYh-EX-xIg">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="gFF-i5-E9L" id="aNo-Dz-pSf"/>
+                            <outlet property="delegate" destination="gFF-i5-E9L" id="uO3-Gb-PpP"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U5o-GG-fif" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="936" y="216"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="mapMarker" width="85" height="85"/>
+    </resources>
 </document>
