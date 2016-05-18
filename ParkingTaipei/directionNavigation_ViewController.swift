@@ -129,6 +129,8 @@ class directionNavigation_ViewController: UIViewController, MKMapViewDelegate, C
                     let distance:String = route.distance > 1000 ? "\(String(format: "%.2f", route.distance / 1000))公里" : "\(Int(route.distance))米"
                     self.distanceLabel.text = "\(distance)"
                 }
+                // only first route
+                break
             }
         }
     }
