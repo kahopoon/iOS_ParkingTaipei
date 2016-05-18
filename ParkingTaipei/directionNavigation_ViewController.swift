@@ -69,9 +69,10 @@ class directionNavigation_ViewController: UIViewController, MKMapViewDelegate, C
                 parkingPlaceArrived = true
                 alertDisplay("停車的地點已到達！")
                 goingToLabel.text = targetPlaceName
-                distanceLabel.text = "\(Int(CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude).distanceFromLocation(CLLocation(latitude: targetLocation.latitude, longitude: targetLocation.longitude))))米"
+                distanceLabel.text = "\(Int(CLLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude).distanceFromLocation(CLLocation(latitude: targetLocation.latitude, longitude: targetLocation.longitude))))米"
             }
-        } else if !targetPlaceArrived {
+        }
+        if !targetPlaceArrived && parkingPlaceArrived {
             if locations[0].distanceFromLocation(CLLocation(latitude: targetLocation.latitude, longitude: targetLocation.longitude)) < distanceToAlert {
                 targetPlaceArrived = true
                 alertDisplay("目的地已到達！祝你有愉快的一天：）")
@@ -79,14 +80,23 @@ class directionNavigation_ViewController: UIViewController, MKMapViewDelegate, C
                 distanceLabel.text = ""
             }
         }
-        if parkingPlaceArrived && targetPlaceArrived {
-            self.navigationController?.popToRootViewControllerAnimated(true)
-        }
+        // update eta
+        distanceLabel.text = "\(Int(CLLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude).distanceFromLocation(CLLocation(latitude: (parkingPlaceArrived ? targetLocation : parkingLocation).latitude, longitude: (parkingPlaceArrived ? targetLocation : parkingLocation).longitude))))米"
     }
     
     func alertDisplay(message: String) {
         let alertController = UIAlertController(title: "溫馨提示", message: message, preferredStyle: .Alert)
-        let alertAction = UIAlertAction(title: "知道了", style: .Cancel, handler: nil)
+        let alertAction = UIAlertAction(title: "知道了", style: .Cancel) { (action) in
+            // update route
+            self.renewNavigationAction(self)
+            // quit if finished
+            if self.targetPlaceArrived && self.parkingPlaceArrived {
+                dispatch_async(dispatch_get_main_queue(), {
+                    let rootVC = self.storyboard?.instantiateInitialViewController()
+                    self.presentViewController(rootVC!, animated: true, completion: nil)
+                })
+            }
+        }
         alertController.addAction(alertAction)
         self.presentViewController(alertController, animated: true, completion: nil)
     }
