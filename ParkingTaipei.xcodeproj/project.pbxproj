@@ -19,6 +19,7 @@
 		112F42B41CE87F5100851A36 /* API_Call.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112F42B31CE87F5100851A36 /* API_Call.swift */; };
 		11E184461CE8ADD500508B29 /* directionNavigation_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E184451CE8ADD500508B29 /* directionNavigation_ViewController.swift */; };
 		11E184481CE8B08300508B29 /* DaanPark.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 11E184471CE8B08300508B29 /* DaanPark.gpx */; };
+		11E2ECD91CECCEAA003A4E3A /* TaipeiStation.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 11E2ECD81CECCEAA003A4E3A /* TaipeiStation.gpx */; };
 		4BDB3B98F601398DC637D5FB /* Pods_ParkingTaipei.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE33B3D456CFB6EF2845F96F /* Pods_ParkingTaipei.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		112F42B31CE87F5100851A36 /* API_Call.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_Call.swift; sourceTree = "<group>"; };
 		11E184451CE8ADD500508B29 /* directionNavigation_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = directionNavigation_ViewController.swift; sourceTree = "<group>"; };
 		11E184471CE8B08300508B29 /* DaanPark.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DaanPark.gpx; sourceTree = "<group>"; };
+		11E2ECD81CECCEAA003A4E3A /* TaipeiStation.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TaipeiStation.gpx; sourceTree = "<group>"; };
 		4D924453DA2D1E490F051104 /* Pods-ParkingTaipei.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParkingTaipei.release.xcconfig"; path = "Pods/Target Support Files/Pods-ParkingTaipei/Pods-ParkingTaipei.release.xcconfig"; sourceTree = "<group>"; };
 		CC61BBEE99CACE35C2D5F617 /* Pods-ParkingTaipei.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParkingTaipei.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ParkingTaipei/Pods-ParkingTaipei.debug.xcconfig"; sourceTree = "<group>"; };
 		CE33B3D456CFB6EF2845F96F /* Pods_ParkingTaipei.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParkingTaipei.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +91,7 @@
 				11006A3A1CE75CE200A33424 /* Info.plist */,
 				11E184471CE8B08300508B29 /* DaanPark.gpx */,
 				110339E01CECB946002FEBB0 /* ParkingNearDaanPark.gpx */,
+				11E2ECD81CECCEAA003A4E3A /* TaipeiStation.gpx */,
 			);
 			path = ParkingTaipei;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 				11006A361CE75CE200A33424 /* Assets.xcassets in Resources */,
 				11006A341CE75CE200A33424 /* Main.storyboard in Resources */,
 				110339E11CECB946002FEBB0 /* ParkingNearDaanPark.gpx in Resources */,
+				11E2ECD91CECCEAA003A4E3A /* TaipeiStation.gpx in Resources */,
 				11E184481CE8B08300508B29 /* DaanPark.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

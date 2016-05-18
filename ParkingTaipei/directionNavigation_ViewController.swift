@@ -42,11 +42,10 @@ class directionNavigation_ViewController: UIViewController, MKMapViewDelegate, C
         markDestinationStop(targetLocation, title: targetPlaceName, subtitle: "目的地")
         markDestinationStop(parkingLocation, title: parkingName, subtitle: "停車地")
         
-        navigationRoute(currentLocation, end: parkingLocation, method: .Automobile)
-        navigationRoute(parkingLocation, end: targetLocation, method: .Walking)
-        
         goingToLabel.text = parkingName
-        distanceLabel.text = "\(Int(CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude).distanceFromLocation(CLLocation(latitude: parkingLocation.latitude, longitude: parkingLocation.longitude))))米"
+        
+        navigationRoute(currentLocation, end: parkingLocation, method: .Automobile, drawRoute: true, calculateDistance: true)
+        navigationRoute(parkingLocation, end: targetLocation, method: .Walking, drawRoute: true, calculateDistance: false)
     }
 
     func markDestinationStop(source: CLLocationCoordinate2D, title: String, subtitle: String) {
@@ -69,7 +68,6 @@ class directionNavigation_ViewController: UIViewController, MKMapViewDelegate, C
                 parkingPlaceArrived = true
                 alertDisplay("停車的地點已到達！")
                 goingToLabel.text = targetPlaceName
-                distanceLabel.text = "\(Int(CLLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude).distanceFromLocation(CLLocation(latitude: targetLocation.latitude, longitude: targetLocation.longitude))))米"
             }
         }
         if !targetPlaceArrived && parkingPlaceArrived {
@@ -77,11 +75,10 @@ class directionNavigation_ViewController: UIViewController, MKMapViewDelegate, C
                 targetPlaceArrived = true
                 alertDisplay("目的地已到達！祝你有愉快的一天：）")
                 goingToLabel.text = "已到達"
-                distanceLabel.text = ""
             }
         }
         // update eta
-        distanceLabel.text = "\(Int(CLLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude).distanceFromLocation(CLLocation(latitude: (parkingPlaceArrived ? targetLocation : parkingLocation).latitude, longitude: (parkingPlaceArrived ? targetLocation : parkingLocation).longitude))))米"
+        navigationRoute(locations[0].coordinate, end: (parkingPlaceArrived ? targetLocation : parkingLocation), method: (parkingPlaceArrived ? .Walking : .Automobile), drawRoute: false, calculateDistance: true)
     }
     
     func alertDisplay(message: String) {
@@ -103,11 +100,11 @@ class directionNavigation_ViewController: UIViewController, MKMapViewDelegate, C
     
     @IBAction func renewNavigationAction(sender: AnyObject) {
         navigationMapView.removeOverlays(navigationMapView.overlays)
-        parkingPlaceArrived ? () : navigationRoute(currentLocation, end: parkingLocation, method: .Automobile)
-        navigationRoute(parkingLocation, end: targetLocation, method: .Walking)
+        parkingPlaceArrived ? () : navigationRoute(currentLocation, end: parkingLocation, method: .Automobile, drawRoute: true, calculateDistance: true)
+        navigationRoute(parkingLocation, end: targetLocation, method: .Walking, drawRoute: true, calculateDistance: false)
     }
     
-    func navigationRoute(start: CLLocationCoordinate2D, end: CLLocationCoordinate2D, method: MKDirectionsTransportType) {
+    func navigationRoute(start: CLLocationCoordinate2D, end: CLLocationCoordinate2D, method: MKDirectionsTransportType, drawRoute: Bool, calculateDistance: Bool) {
         let request = MKDirectionsRequest()
         request.source = MKMapItem(placemark: MKPlacemark(coordinate: start, addressDictionary: nil))
         request.destination = MKMapItem(placemark: MKPlacemark(coordinate: end, addressDictionary: nil))
@@ -119,11 +116,18 @@ class directionNavigation_ViewController: UIViewController, MKMapViewDelegate, C
         directions.calculateDirectionsWithCompletionHandler { [unowned self] response, error in
             guard let unwrappedResponse = response else { return }
             for route in unwrappedResponse.routes {
-                self.routeColor = method == .Automobile ? UIColor.redColor().colorWithAlphaComponent(0.4) : UIColor.blueColor().colorWithAlphaComponent(0.4)
-                // level is essential for multi color on route
-                self.navigationMapView.addOverlay(route.polyline, level: MKOverlayLevel.AboveRoads)
-                if method == .Automobile {
-                    self.navigationMapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 80.0, left: 80.0, bottom: 80.0, right: 80.0), animated: true)
+                if drawRoute {
+                    self.routeColor = method == .Automobile ? UIColor.redColor().colorWithAlphaComponent(0.4) : UIColor.blueColor().colorWithAlphaComponent(0.4)
+                    // level is essential for multi color on route
+                    self.navigationMapView.addOverlay(route.polyline, level: MKOverlayLevel.AboveRoads)
+                    if method == .Automobile {
+                        self.navigationMapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 80.0, left: 80.0, bottom: 80.0, right: 80.0), animated: true)
+                    }
+                }
+                if calculateDistance {
+                    //simple manipulation in distance value
+                    let distance:String = route.distance > 1000 ? "\(String(format: "%.2f", route.distance / 1000))公里" : "\(Int(route.distance))米"
+                    self.distanceLabel.text = "\(distance)"
                 }
             }
         }
