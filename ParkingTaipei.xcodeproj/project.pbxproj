@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		11006A2B1CE75CE200A33424 /* ParkingTaipei.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkingTaipei.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		11006A2B1CE75CE200A33424 /* 身障好停車.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "身障好停車.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11006A2E1CE75CE200A33424 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11006A301CE75CE200A33424 /* AddressInput_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInput_ViewController.swift; sourceTree = "<group>"; };
 		11006A331CE75CE200A33424 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -67,7 +67,7 @@
 		11006A2C1CE75CE200A33424 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				11006A2B1CE75CE200A33424 /* ParkingTaipei.app */,
+				11006A2B1CE75CE200A33424 /* 身障好停車.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -110,9 +110,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		11006A2A1CE75CE200A33424 /* ParkingTaipei */ = {
+		11006A2A1CE75CE200A33424 /* 身障好停車 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 11006A3D1CE75CE200A33424 /* Build configuration list for PBXNativeTarget "ParkingTaipei" */;
+			buildConfigurationList = 11006A3D1CE75CE200A33424 /* Build configuration list for PBXNativeTarget "身障好停車" */;
 			buildPhases = (
 				B542B6B4419F8F93E19CFFDC /* 📦 Check Pods Manifest.lock */,
 				11006A271CE75CE200A33424 /* Sources */,
@@ -125,9 +125,9 @@
 			);
 			dependencies = (
 			);
-			name = ParkingTaipei;
+			name = "身障好停車";
 			productName = ParkingTaipei;
-			productReference = 11006A2B1CE75CE200A33424 /* ParkingTaipei.app */;
+			productReference = 11006A2B1CE75CE200A33424 /* 身障好停車.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -142,6 +142,7 @@
 				TargetAttributes = {
 					11006A2A1CE75CE200A33424 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = KX6H57GMQW;
 					};
 				};
 			};
@@ -158,7 +159,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				11006A2A1CE75CE200A33424 /* ParkingTaipei */,
+				11006A2A1CE75CE200A33424 /* 身障好停車 */,
 			);
 		};
 /* End PBXProject section */
@@ -351,6 +352,7 @@
 			baseConfigurationReference = CC61BBEE99CACE35C2D5F617 /* Pods-ParkingTaipei.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ParkingTaipei/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.kahopoon.ParkingTaipei;
@@ -364,6 +366,7 @@
 			baseConfigurationReference = 4D924453DA2D1E490F051104 /* Pods-ParkingTaipei.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ParkingTaipei/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.kahopoon.ParkingTaipei;
@@ -384,7 +387,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		11006A3D1CE75CE200A33424 /* Build configuration list for PBXNativeTarget "ParkingTaipei" */ = {
+		11006A3D1CE75CE200A33424 /* Build configuration list for PBXNativeTarget "身障好停車" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				11006A3E1CE75CE200A33424 /* Debug */,

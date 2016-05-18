@@ -41,7 +41,7 @@ class AddressInput_ViewController: UIViewController, MKMapViewDelegate, CLLocati
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse {
             locationManager.startUpdatingLocation()
-            serachButtonTitleChange("尋找")
+            serachButtonTitleChange("尋找車位")
         } else {
             serachButtonTitleChange("請先於設置開啟定位服務")
         }
