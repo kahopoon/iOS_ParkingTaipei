@@ -14,7 +14,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-&#21488;&#21271;&#36523;&#38556;&#20572;&#36554;.xcscheme</key>
+		<key>Pods-台北身障停車.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -26,6 +26,27 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict/>
+	<dict>
+		<key>23C979F16A644982479258939E562369</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6013CDD1374C2B5BB77ABCAE5AA4B578</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F6F0516F82D07656D12F1C0716898F73</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>

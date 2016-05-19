@@ -24,9 +24,16 @@ class AddressInput_ViewController: UIViewController, MKMapViewDelegate, CLLocati
     var lastKnownInputPlaceName: String!
     var initialStart: Bool = true
     var firstZoom: Bool = true
+    var databaseUpdateNeeded: Bool = true
+    var databaseTimeStamp:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        checkUpdateNeeded { (required, timeStamp) in
+            self.databaseUpdateNeeded = required
+            self.databaseTimeStamp = timeStamp
+        }
         
         searchButton.layer.cornerRadius = 5
         addressSelectionMapView.layer.cornerRadius = 5
@@ -130,6 +137,8 @@ class AddressInput_ViewController: UIViewController, MKMapViewDelegate, CLLocati
             vc.destinationLocation = lastKnownInputCoordinate
             vc.currentLocation = lastKnownCurrentCoordinate
             vc.destinationName = lastKnownInputPlaceName
+            vc.updateDB = databaseUpdateNeeded
+            vc.updateStamp = databaseTimeStamp
         }
     }
     

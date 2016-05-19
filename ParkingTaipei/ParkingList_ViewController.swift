@@ -19,6 +19,8 @@ class ParkingList_ViewController: UIViewController, UITableViewDataSource, UITab
     var destinationLocation: CLLocationCoordinate2D!
     var currentLocation: CLLocationCoordinate2D!
     var destinationName: String!
+    var updateDB:Bool!
+    var updateStamp:String!
     var parkingSpotResult: [String:[String:String]] = [:]
     var parkingAreaResult: [String:[String:String]] = [:]
     var sortedParkingSpot:[(String,[String:String])] = []
@@ -29,14 +31,26 @@ class ParkingList_ViewController: UIViewController, UITableViewDataSource, UITab
 
         mainTableView.alpha = 0
         bikeCarChoice.alpha = 0
-        HUD.show(.LabeledProgress(title: "停車數據載入中", subtitle: "請稍候"))
-        parkingResultAPICall { (result) in
-            if result {
-                self.mainTableView.reloadData()
-                self.bikeCarChoice.alpha = 1
-                self.mainTableView.alpha = 1
-                HUD.hide()
+        
+        if updateDB == true {
+            HUD.show(.LabeledProgress(title: (NSUserDefaults.standardUserDefaults().objectForKey("lastUpdate") == nil ? "首次使用下載中" : "新版資料庫下載中"), subtitle: "請稍候"))
+            parkingResultAPICall { (result) in
+                if result {
+                    HUD.flash(.LabeledSuccess(title: "下載成功", subtitle: ""), delay: 2.0)
+                    self.mainTableView.reloadData()
+                    self.bikeCarChoice.alpha = 1
+                    self.mainTableView.alpha = 1
+                }
             }
+        } else {
+            HUD.flash(.LabeledSuccess(title: "搜尋到以下車位", subtitle: ""), delay: 2.0)
+            parkingResultFromLocal({ (result) in
+                if result {
+                    self.mainTableView.reloadData()
+                    self.bikeCarChoice.alpha = 1
+                    self.mainTableView.alpha = 1
+                }
+            })
         }
     }
     
@@ -47,6 +61,15 @@ class ParkingList_ViewController: UIViewController, UITableViewDataSource, UITab
         }
     }
 
+    func parkingResultFromLocal(completion: (result:Bool) -> Void) {
+        let destination = CLLocation(latitude: destinationLocation.latitude, longitude: destinationLocation.longitude)
+        parkingSpotResult = NSKeyedUnarchiver.unarchiveObjectWithFile(NSHomeDirectory().stringByAppendingString("/Documents/parkingSpotResult.dat")) as! [String:[String:String]]
+        parkingAreaResult = NSKeyedUnarchiver.unarchiveObjectWithFile(NSHomeDirectory().stringByAppendingString("/Documents/parkingAreaResult.dat")) as! [String:[String:String]]
+        sortArrayByDistance(destination, category: 0)
+        sortArrayByDistance(destination, category: 1)
+        completion(result: true)
+    }
+    
     func parkingResultAPICall(completion: (result: Bool) -> Void) {
         let destination = CLLocation(latitude: destinationLocation.latitude, longitude: destinationLocation.longitude)
         parkingAreaAPICall { (parkingArea) in
@@ -71,6 +94,11 @@ class ParkingList_ViewController: UIViewController, UITableViewDataSource, UITab
             let lng = eachResult["POINT_X"].stringValue
             category == 1 ? (parkingAreaResult[id] = ["name":name, "lat":lat, "lng":lng]) : (parkingSpotResult[id] = ["name":name, "lat":lat, "lng":lng])
         }
+        // all data save to file
+        NSKeyedArchiver.archiveRootObject((category == 1 ? parkingAreaResult : parkingSpotResult), toFile: NSHomeDirectory().stringByAppendingString("/Documents/\(category == 1 ? "parkingAreaResult" : "parkingSpotResult").dat"))
+        // update user defaults
+        NSUserDefaults.standardUserDefaults().setObject(updateStamp, forKey: "lastUpdate")
+        NSUserDefaults.standardUserDefaults().synchronize()
         return true
     }
     
