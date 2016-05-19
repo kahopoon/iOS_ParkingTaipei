@@ -21,6 +21,7 @@
 		11E184481CE8B08300508B29 /* DaanPark.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 11E184471CE8B08300508B29 /* DaanPark.gpx */; };
 		11E2ECD91CECCEAA003A4E3A /* TaipeiStation.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 11E2ECD81CECCEAA003A4E3A /* TaipeiStation.gpx */; };
 		4BDB3B98F601398DC637D5FB /* Pods_ParkingTaipei.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE33B3D456CFB6EF2845F96F /* Pods_ParkingTaipei.framework */; };
+		513FCD27778E9D4F86EBE635 /* Pods_______.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99A651FB793C4E7F17FD716E /* Pods_______.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,9 @@
 		11E184471CE8B08300508B29 /* DaanPark.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DaanPark.gpx; sourceTree = "<group>"; };
 		11E2ECD81CECCEAA003A4E3A /* TaipeiStation.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TaipeiStation.gpx; sourceTree = "<group>"; };
 		4D924453DA2D1E490F051104 /* Pods-ParkingTaipei.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParkingTaipei.release.xcconfig"; path = "Pods/Target Support Files/Pods-ParkingTaipei/Pods-ParkingTaipei.release.xcconfig"; sourceTree = "<group>"; };
+		7B9761930015E9FBBED119F3 /* Pods-台北身障停車.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-台北身障停車.release.xcconfig"; path = "Pods/Target Support Files/Pods-台北身障停車/Pods-台北身障停車.release.xcconfig"; sourceTree = "<group>"; };
+		99A651FB793C4E7F17FD716E /* Pods_______.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_______.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5A3D8485A42B6D537392049 /* Pods-台北身障停車.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-台北身障停車.debug.xcconfig"; path = "Pods/Target Support Files/Pods-台北身障停車/Pods-台北身障停車.debug.xcconfig"; sourceTree = "<group>"; };
 		CC61BBEE99CACE35C2D5F617 /* Pods-ParkingTaipei.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParkingTaipei.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ParkingTaipei/Pods-ParkingTaipei.debug.xcconfig"; sourceTree = "<group>"; };
 		CE33B3D456CFB6EF2845F96F /* Pods_ParkingTaipei.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParkingTaipei.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -51,6 +55,7 @@
 			files = (
 				11006A411CE75D2500A33424 /* MapKit.framework in Frameworks */,
 				4BDB3B98F601398DC637D5FB /* Pods_ParkingTaipei.framework in Frameworks */,
+				513FCD27778E9D4F86EBE635 /* Pods_______.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +106,8 @@
 			children = (
 				CC61BBEE99CACE35C2D5F617 /* Pods-ParkingTaipei.debug.xcconfig */,
 				4D924453DA2D1E490F051104 /* Pods-ParkingTaipei.release.xcconfig */,
+				B5A3D8485A42B6D537392049 /* Pods-台北身障停車.debug.xcconfig */,
+				7B9761930015E9FBBED119F3 /* Pods-台北身障停車.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -109,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				CE33B3D456CFB6EF2845F96F /* Pods_ParkingTaipei.framework */,
+				99A651FB793C4E7F17FD716E /* Pods_______.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -199,7 +207,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ParkingTaipei/Pods-ParkingTaipei-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-台北身障停車/Pods-台北身障停車-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9A1D66F770F998E0628F2E5D /* 📦 Embed Pods Frameworks */ = {
@@ -214,7 +222,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ParkingTaipei/Pods-ParkingTaipei-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-台北身障停車/Pods-台北身障停車-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B542B6B4419F8F93E19CFFDC /* 📦 Check Pods Manifest.lock */ = {
@@ -357,7 +365,7 @@
 		};
 		11006A3E1CE75CE200A33424 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CC61BBEE99CACE35C2D5F617 /* Pods-ParkingTaipei.debug.xcconfig */;
+			baseConfigurationReference = B5A3D8485A42B6D537392049 /* Pods-台北身障停車.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -371,7 +379,7 @@
 		};
 		11006A3F1CE75CE200A33424 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4D924453DA2D1E490F051104 /* Pods-ParkingTaipei.release.xcconfig */;
+			baseConfigurationReference = 7B9761930015E9FBBED119F3 /* Pods-台北身障停車.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
