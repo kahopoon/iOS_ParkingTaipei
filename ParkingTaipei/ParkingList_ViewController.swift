@@ -32,23 +32,25 @@ class ParkingList_ViewController: UIViewController, UITableViewDataSource, UITab
         mainTableView.alpha = 0
         bikeCarChoice.alpha = 0
         
+        func contentRelease() {
+            self.mainTableView.reloadData()
+            self.bikeCarChoice.alpha = 1
+            self.mainTableView.alpha = 1
+        }
+        
         if updateDB == true {
             HUD.show(.LabeledProgress(title: (NSUserDefaults.standardUserDefaults().objectForKey("lastUpdate") == nil ? "首次使用下載中" : "新版資料庫下載中"), subtitle: "請稍候"))
             parkingResultAPICall { (result) in
                 if result {
                     HUD.flash(.LabeledSuccess(title: "下載成功", subtitle: ""), delay: 2.0)
-                    self.mainTableView.reloadData()
-                    self.bikeCarChoice.alpha = 1
-                    self.mainTableView.alpha = 1
+                    contentRelease()
                 }
             }
         } else {
             HUD.flash(.LabeledSuccess(title: "搜尋到以下車位", subtitle: ""), delay: 2.0)
             parkingResultFromLocal({ (result) in
                 if result {
-                    self.mainTableView.reloadData()
-                    self.bikeCarChoice.alpha = 1
-                    self.mainTableView.alpha = 1
+                    contentRelease()
                 }
             })
         }
@@ -113,6 +115,8 @@ class ParkingList_ViewController: UIViewController, UITableViewDataSource, UITab
             return source.sort({Double($0.1["distanceFromYou"]!)! < Double($1.1["distanceFromYou"]!)!})
         }
         category == 1 ? (sortedParkingArea = sort(parkingAreaResult)) : (sortedParkingSpot = sort(parkingSpotResult))
+        // relase memory
+        category == 1 ? (parkingAreaResult = [:]) : (parkingSpotResult = [:])
     }
     
     override func didReceiveMemoryWarning() {
