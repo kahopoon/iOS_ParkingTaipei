@@ -28,11 +28,15 @@ func parkingSpotAPICall (completion: (parkingSpot: AnyObject) -> Void) {
 
 func checkUpdateNeeded (completion: (required: Bool, timeStamp: String) -> Void) {
     Alamofire.request(.GET, checkUpdate_API_url).responseJSON { (response) in
-        let updateStamp = JSON(response.result.value!)["result"]["results"][0]["metadata_modified"].stringValue
+        var updateStamp:String!
+        response.result.isSuccess ? updateStamp = JSON(response.result.value!)["result"]["results"][0]["metadata_modified"].stringValue : ()
         if let lastUpdate = NSUserDefaults.standardUserDefaults().objectForKey("lastUpdate") {
-            completion(required: lastUpdate as! String != updateStamp, timeStamp: updateStamp)
+            // defensive, if api not responding will consider as no update is needed
+            response.result.isFailure ? updateStamp = lastUpdate as! String : ()
+            completion(required: lastUpdate as? String != updateStamp, timeStamp: updateStamp)
         } else {
-            completion(required: true, timeStamp: updateStamp)
+            // defensive, if api not responding and no local records will consider as not possible to work
+            completion(required: true, timeStamp: updateStamp ?? "error")
         }
     }
 }

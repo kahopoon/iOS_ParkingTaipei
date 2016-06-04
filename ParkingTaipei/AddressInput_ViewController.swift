@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreLocation
+import Alamofire
+import SwiftyJSON
 import MapKit
 
 class AddressInput_ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITextFieldDelegate {
@@ -31,6 +33,7 @@ class AddressInput_ViewController: UIViewController, MKMapViewDelegate, CLLocati
         super.viewDidLoad()
         
         checkUpdateNeeded { (required, timeStamp) in
+            timeStamp == "error" ? self.notworkingAlert() : ()
             self.databaseUpdateNeeded = required
             self.databaseTimeStamp = timeStamp
         }
@@ -43,6 +46,14 @@ class AddressInput_ViewController: UIViewController, MKMapViewDelegate, CLLocati
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         addressSelectionMapView.delegate = self
         addressInput.delegate = self
+    }
+    
+    func notworkingAlert() {
+        searchButton.enabled = false
+        let alertController = UIAlertController(title: "錯誤", message: "無法讀取停車場數據，請稍候再嘗試", preferredStyle: .Alert)
+        let alertAction = UIAlertAction(title: "知道了", style: .Destructive, handler: nil)
+        alertController.addAction(alertAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -90,16 +101,40 @@ class AddressInput_ViewController: UIViewController, MKMapViewDelegate, CLLocati
     }
     
     func getAddressFromCoordinate(source: CLLocation) {
-        let geoCoder = CLGeocoder()
-        geoCoder.reverseGeocodeLocation(source) {
-            (placemarks, error) -> Void in
-            // chinese geocoder output
-            NSUserDefaults.standardUserDefaults().setObject(NSArray(object: "zh-tw"), forKey: "AppleLanguages")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            self.addressInput.text = String(placemarks![0].addressDictionary!["Name"]!)
+        let LAT = String(source.coordinate.latitude)
+        let LNG = String(source.coordinate.longitude)
+        // from google
+        func fromGoogle() {
+            let geocodeURL:NSURL = NSURL(string: "https://maps.googleapis.com/maps/api/geocode/json")!
+            Alamofire.request(.GET, geocodeURL, parameters: ["latlng":"\(LAT),\(LNG)", "language":"zh-TW"]).responseJSON { (response) in
+                if let data = response.result.value {
+                    let json = JSON(data)
+                    if json["status"].stringValue == "OK" {
+                        let finalAddress = json["results"][0]["formatted_address"].stringValue
+                        self.addressInput.text = finalAddress
+                        assignAction()
+                    }
+                }
+            }
+        }
+        // from apple
+        func fromApple() {
+            let geoCoder = CLGeocoder()
+            geoCoder.reverseGeocodeLocation(source) {
+                (placemarks, error) -> Void in
+                // chinese geocoder output
+                NSUserDefaults.standardUserDefaults().setObject(NSArray(object: "zh-tw"), forKey: "AppleLanguages")
+                NSUserDefaults.standardUserDefaults().synchronize()
+                self.addressInput.text = String(placemarks![0].addressDictionary!["Name"]!)
+                assignAction()
+            }
+        }
+        func assignAction() {
             self.lastKnownInputPlaceName = self.addressInput.text
             self.lastKnownInputCoordinate = source.coordinate
         }
+        // current choice
+        fromGoogle()
     }
     
     func getCoordinateFromAddress(source: String) {
